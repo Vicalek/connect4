@@ -10,6 +10,11 @@
     sudo apt-get update
     sudo apt-get install build-essential
 
+    Commands used at top level of repo to run the game:
+    cmake .
+    make
+    ./connect4
+
 ## **Statistics for this assignment:**
 ```
 **Time spent:** ~6 hours
