@@ -116,7 +116,7 @@ int main(){
 
     int bot_choice;
     int player_choice;
-    int turn_player = 1; //TODO change this for a computer to be a player as well
+    int turn_player = 1;
 
     player_choice = 0;
 
