@@ -1,48 +1,31 @@
 #include <iostream>
 #include <cstdlib>
 #include "connect4.h"
-#include "testConnect4.h"
 
-//  Template to receive any size of array
-template <size_t rows, size_t cols>
+int main(){
 
-// We print out the status of the board after each move
-void displayBoard(int (&board)[rows][cols])
+    runGame();
+
+    std::cout << "Thanks for playing!" << std::endl;
+
+    return 0;
+}
+
+//Check for a draw by scanning the top row for any zeros.
+//If the top row has no zeros, then the board is full and 
+//can be used to determine if there is a draw.
+bool checkDraw (int (&board)[][7])
 {
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){                
-            std::cout << board[i][j] << "|";
+    for(int i = 0; i < 7; i++){
+        if(board[0][i] == 0){
+            return false;
         }
-        std::cout << std::endl;
     }
+    return true;
 }
 
-//  We insert the coin from the player_choice using referenceRow to 
-//  determine how many coins are already in the column for the height
-//  then increment the referenceRow index. If max height is reached
-//  the program will not insert the coin into the board.
-bool insertCoin(int (&board)[][7], int choice, int turn_player)
-{
-    if(turn_player != 1 && turn_player != 2){
-        std::cout << "[Invalid turn_player. We must have 1 or 2 as input.]" << std::endl;
-        return false;
-    }
-
-    if(choice < 0 || choice > 6){
-        std::cout << "[Column choice is out of bounds.]" << std::endl;
-        return false;  
-    }
-
-    if(referenceRow[choice] != 6){
-        board[5-referenceRow[choice]][choice] = turn_player;
-        referenceRow[choice]++;
-        return true;
-    }else{
-        std::cout << "[This is not a valid move!]" << std::endl;
-        return false;
-    }
-}
-
+//Main logic to determine a win. We scan for the four types
+//of win conditions for either player here.
 bool checkWin(int (&board)[][7])
 {
 //  Check for a horizontal win
@@ -100,56 +83,35 @@ bool checkWin(int (&board)[][7])
     return false;
 }
 
-//Check for a draw by scanning the top row for any zeros.
-//If the top row has no zeros, then the board is full and 
-//can be used to determine if there is a draw.
-bool checkDraw (int (&board)[][7])
+//  We insert the coin from the player_choice using referenceRow to 
+//  determine how many coins are already in the column for the height
+//  then increment the referenceRow index. If max height is reached
+//  the program will not insert the coin into the board.
+bool insertCoin(int (&board)[][7], int choice, int turn_player)
 {
-    for(int i = 0; i < 7; i++){
-        if(board[0][i] == 0){
-            return false;
-        }
+    if(turn_player != 1 && turn_player != 2){
+        std::cout << "[Invalid turn_player. We must have 1 or 2 as input.]" << std::endl;
+        return false;
     }
-    return true;
+
+    if(choice < 0 || choice > 6){
+        std::cout << "[Column choice is out of bounds.]" << std::endl;
+        return false;  
+    }
+
+    if(referenceRow[choice] != 6){
+        board[5-referenceRow[choice]][choice] = turn_player;
+        referenceRow[choice]++;
+        return true;
+    }else{
+        std::cout << "[This is not a valid move!]" << std::endl;
+        return false;
+    }
 }
 
-void runTestBoards()
-{
-    std::cout << "===[THIS IS THE TEST DATA CHOICE]===" << std::endl;
-    
-    displayBoard(testBoard1);
-    std::cout << "Test Board 1: ";
-    if (checkWin(testBoard1))  std::cout << "You won! ";
-    if (checkDraw(testBoard1)) std::cout << "This game is a draw! ";
-    std::cout << std::endl;
-
-    displayBoard(testBoard2);
-    std::cout << "Test Board 2: ";
-    if (checkWin(testBoard2))  std::cout << "You won! ";
-    if (checkDraw(testBoard2)) std::cout << "This game is a draw! ";
-    std::cout << std::endl;
-
-    displayBoard(testBoard3);
-    std::cout << "Test Board 3: ";
-    if (checkWin(testBoard3))  std::cout << "The bot won! ";
-    if (checkDraw(testBoard3)) std::cout << "This game is a draw! ";
-    std::cout << std::endl;
-
-    displayBoard(testBoard4);
-    std::cout << "Test Board 4: ";
-    if (checkWin(testBoard4))  std::cout << "You won! ";
-    if (checkDraw(testBoard4)) std::cout << "This game is a draw! ";
-    std::cout << std::endl;
-
-    displayBoard(testBoard5);
-    std::cout << "Test Board 5: ";
-    if (checkWin(testBoard5))  std::cout << "The bot won! ";
-    if (checkDraw(testBoard5)) std::cout << "This game is a draw! ";
-    std::cout << std::endl;
-    return;
-}
-
-int main(){
+//Initialize and set variables for game start.
+//All game logic starts and is contained here.
+void runGame(){
 
     int bot_choice;
     int player_choice;
@@ -221,6 +183,6 @@ int main(){
         }  
     }
 
-    std::cout << "Thanks for playing!" << std::endl;
-    return 0;
+    return;
+
 }

@@ -15,6 +15,12 @@
     make
     ./connect4
 
+## **Some additional instructions**
+When running this program, if you would like to access test boards
+used to check for win conditions or draw states, type in "365" when asked
+to select a column to place a coin. The program will display the boards 
+being used and show whether a human won, a bot won, or a draw has occured.
+
 ## **Statistics for this assignment:**
 ```
 **Time spent:** ~6 hours
