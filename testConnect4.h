@@ -1,3 +1,5 @@
+#pragma once
+
 int testBoard1 [6][7] = { //    A full board, a draw
     {1, 1, 2, 1, 1, 2, 2},
     {2, 2, 1, 2, 2, 1, 1},

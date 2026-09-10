@@ -1,3 +1,7 @@
+#pragma once
+
+#include <iostream>
+
 inline int referenceRow[7]; //  Tracks the amount of coins in each column
 
 inline int board [6][7] = {

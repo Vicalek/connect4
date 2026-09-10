@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 #include "connect4.h"
 
 int main(){
@@ -113,11 +114,11 @@ bool insertCoin(int (&board)[][7], int choice, int turn_player)
 //All game logic starts and is contained here.
 void runGame(){
 
-    int bot_choice;
-    int player_choice;
-    int turn_player = 1;
+    std::srand(static_cast<unsigned int>(std::time(NULL)));
 
-    player_choice = 0;
+    int bot_choice;
+    int player_choice = 0;
+    int turn_player = 1;
 
     displayBoard(board);
 
@@ -129,7 +130,7 @@ void runGame(){
 
         if(std::cin.fail()){
             std::cin.clear();
-            std::cin.ignore(10,'\n');
+            std::cin.ignore(999,'\n');
             std::cout << "Invalid input! Please enter a number." << std::endl;
             continue;
         }

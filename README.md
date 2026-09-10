@@ -38,6 +38,11 @@ being used and show whether a human won, a bot won, or a draw has occured.
 **Features/Improvements I would like to make:**
     -Create a GUI for usage on a desktop
     -If the game remains in a terminal, I would like different colored text
+    -Combine referenceRow and board[][] into a single struct, object or class
+     to avoid any possible desync of position and tracking
+    -Due to checkWin() returning a bool and not who wins could pose a problem
+     if not implemented correctly in the main game loop. With a bool return
+     type, I performed the check after the player move and after the bot move.
     -In the functions of checkDraw(), checkWin(), and insertCoin()
      I would have liked to be able to have them take in an array of
      any size. That way I can always check for any sized array for
